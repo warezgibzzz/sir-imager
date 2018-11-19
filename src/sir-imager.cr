@@ -6,25 +6,7 @@ macro serve(filename)
 end
 
 def get_dimensions(x : Int, y : Int, x1 : Int, y1 : Int)
-  puts x
-  puts y
-  puts x1
-  puts y1
-
-  median_x = (x > x1 ? x - x1 : x1 - x)
-  median_y = (y > y1 ? y - y1 : y1 - y)
-
-  offset_x = if x > x1
-    (x - x1) / 2
-  else
-    (x1 - x) / 2
-  end
-
-  offset_y = if y > y1
-    (y - y1) / 2 / y1
-  else
-    (y1 - y) / 2 / y
-  end
+  ratio = (new_y/new_x) + (old_y - old_x*new_y/new_x)
 
   result = {"median_y" => median_y.to_i, "median_x" => median_x.to_i, "offset_x" => offset_x.to_i, "offset_y" => offset_y.to_i}
   
