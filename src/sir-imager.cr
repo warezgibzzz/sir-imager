@@ -40,7 +40,7 @@ get "/:dir/:width/:height/:file" do |env|
   width = env.params.url["width"].as(String)
   height = env.params.url["height"].as(String)
   file_path = ::File.join ["uploads/", dir, "original/", file]
-  HTTP::Client.get("http://resizer:8000/unsafe/fit-in/#{width}x#{height}/http://imager:3000/#{file_path}") do |response|
+  HTTP::Client.get("http://resizer:8000/unsafe/#{width}x#{height}/http://imager:3000/#{file_path}") do |response|
     
       
     unless Dir.exists?(File.join [Kemal.config.public_folder, "uploads/", dir, "#{width}x#{height}/"])
