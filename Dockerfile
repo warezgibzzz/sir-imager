@@ -9,7 +9,7 @@ WORKDIR /data
 VOLUME [ "/data/public/uploads" ]
 ADD . .
 RUN shards install
-EXPOSE 80
+EXPOSE 3000
 EXPOSE 8888
 RUN crystal build src/sir-imager.cr
 
