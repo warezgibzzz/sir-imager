@@ -48,7 +48,7 @@ get "/:dir/:width/:height/:file" do |env|
     end
     thumb_path = File.join [Kemal.config.public_folder, "uploads/", dir, "#{width}x#{height}/", file]
     File.open(thumb_path, "w") do |f|
-      IO.copy(f, response.body_io)
+      IO.copy(response.body_io, f)
     end
   end
 end
