@@ -40,7 +40,7 @@ get "/:dir/:width/:height/:file" do |env|
   width = env.params.url["width"].as(String)
   height = env.params.url["height"].as(String)
   file_path = ::File.join ["uploads/", dir, "/", file]
-  HTTP::Client.get("http://resizer:8000/unsafe/#{width}x#{height}/http://sir-imager:3000/#{file_path}") do |response|
+  HTTP::Client.get("http://resizer:8000/unsafe/#{width}x#{height}/http://imager:3000/#{file_path}") do |response|
     File.write("test.jpg", response.body_io)
   end
 end
