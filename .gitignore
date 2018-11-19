@@ -3,3 +3,5 @@
 /bin/
 /.shards/
 *.dwarf
+/public/uploads/
+!/public/uploads/.gitkeep
