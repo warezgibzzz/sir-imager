@@ -1,6 +1,7 @@
-# TODO: Write documentation for `Sir::Imager`
-module Sir::Imager
-  VERSION = "0.1.0"
+require "kemal"
 
-  # TODO: Put your code here
+get "/" do |env|
+  "Hello World!"
 end
+
+Kemal.run
