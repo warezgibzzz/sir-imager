@@ -10,7 +10,7 @@ VOLUME [ "/data/public/uploads" ]
 ADD . .
 EXPOSE 3000
 EXPOSE 8888
-ARG VERSION=8
+ARG VERSION=9
 RUN shards install
 RUN crystal build src/sir-imager.cr
 
