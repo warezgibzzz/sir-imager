@@ -1,0 +1,8 @@
+files: ./**/*.cr
+run: crystal build ./src/sir-imager.cr
+---
+files: ./views/**/*.ecr
+run: crystal build ./src/sir-imager.cr
+---
+files: ./shard.yml
+run: crystal deps
