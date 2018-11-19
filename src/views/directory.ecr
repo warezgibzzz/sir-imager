@@ -3,9 +3,9 @@
     <h1>SIR IMAGER</h1>
   </chunk>
 <% end %>
-<%= hello %>
+<%= path %>
 <ul>
-<%- dirs.each do |dir| -%>
-<li><a href="<%= dir %>"><%= dir %></a></li>
+<%- files.each do |file_path| -%>
+<li><a href="<%= file_path %>"><%= file_path %></a></li>
 <%- end -%>
 </ul>

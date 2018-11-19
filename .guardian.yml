@@ -1,8 +1,8 @@
 files: ./**/*.cr
-run: crystal build ./src/sir-imager.cr
+run: crystal run ./src/sir-imager.cr --release
 ---
-files: ./views/**/*.ecr
-run: crystal build ./src/sir-imager.cr
+files: ./**/*.ecr
+run: crystal run ./src/sir-imager.cr --release
 ---
 files: ./shard.yml
 run: crystal deps
