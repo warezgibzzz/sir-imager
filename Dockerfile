@@ -8,9 +8,10 @@ RUN apt update && apt install -y crystal libssl-dev libxml2-dev libyaml-dev libg
 WORKDIR /data
 VOLUME [ "/data/public/uploads" ]
 ADD . .
-RUN shards install
 EXPOSE 3000
 EXPOSE 8888
+ARG VERSION=5
+RUN shards install
 RUN crystal build src/sir-imager.cr
 
 ENTRYPOINT /data/sir-imager
