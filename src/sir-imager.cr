@@ -23,11 +23,11 @@ post "/upload" do |env|
   orig_name = env.params.files["image"].filename.as(String)
   dir = env.params.body["dir"].as(String)
 
-  unless Dir.exists?(File.join [Kemal.config.public_folder, "uploads/", dir])
-    Dir.mkdir(File.join [Kemal.config.public_folder, "uploads/", dir])
+  unless Dir.exists?(File.join [Kemal.config.public_folder, "uploads/", dir, "/original/"])
+    Dir.mkdir(File.join [Kemal.config.public_folder, "uploads/", dir, "original/"])
   end
   
-  file_path = File.join [Kemal.config.public_folder, "uploads/", dir, "/", orig_name]
+  file_path = File.join [Kemal.config.public_folder, "uploads/", dir, "original/", orig_name]
   File.open(file_path, "w") do |f|
     IO.copy(file, f)
   end
@@ -39,9 +39,17 @@ get "/:dir/:width/:height/:file" do |env|
   dir = env.params.url["dir"].as(String)
   width = env.params.url["width"].as(String)
   height = env.params.url["height"].as(String)
-  file_path = ::File.join ["uploads/", dir, "/", file]
+  file_path = ::File.join ["uploads/", dir, "original/", file]
   HTTP::Client.get("http://resizer:8000/unsafe/#{width}x#{height}/http://imager:3000/#{file_path}") do |response|
     File.write("test.jpg", response.body_io)
+      
+    unless Dir.exists?(File.join [Kemal.config.public_folder, "uploads/", dir, "#{width}x#{height}/"])
+      Dir.mkdir(File.join [Kemal.config.public_folder, "uploads/", dir, "#{width}x#{height}/"])
+    end
+    thumb_path = File.join [Kemal.config.public_folder, "uploads/", dir, "#{width}x#{height}/", file]
+    File.open(file_path, "w") do |f|
+      IO.copy(file, f)
+    end
   end
 end
 
