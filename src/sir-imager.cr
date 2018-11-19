@@ -22,8 +22,12 @@ post "/upload" do |env|
   file = env.params.files["image"].tempfile
   orig_name = env.params.files["image"].filename.as(String)
   dir = env.params.body["dir"].as(String)
+
+  unless Dir.exists?(File.join [Kemal.config.public_folder, "uploads/", dir])
+    Dir.mkdir(File.join [Kemal.config.public_folder, "uploads/", dir])
+  end
   
-  file_path = ::File.join [Kemal.config.public_folder, "uploads/", dir, "/", orig_name]
+  file_path = File.join [Kemal.config.public_folder, "uploads/", dir, "/", orig_name]
   File.open(file_path, "w") do |f|
     IO.copy(file, f)
   end
