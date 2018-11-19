@@ -1,0 +1,19 @@
+name: sir-imager
+version: 0.1.0
+
+authors:
+  - Pavel S. Poronko <me@gibzzz.tk>
+
+targets:
+  sir-imager:
+    main: src/sir-imager.cr
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+  magickwand-crystal:
+    github: blocknotes/magickwand-crystal
+
+crystal: 0.27.0
+
+license: MIT
